@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aventón UPA - Flask</title>
+</head>
+
+<body>
+    <h1>Bienvenido a Aventón UPA</h1>
+    <h2>Elige si deseas registrarte como pasajero o conductor:</h2>
+    <a href="{{ url_for('registro_conductor') }}">
+        <button>Registrar Conductor</button>
+    </a>
+    <a href="{{ url_for('registro_pasajero') }}">
+        <button>Registrar Pasajero</button>
+    </a>
+</body>
+
+</html>
