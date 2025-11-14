@@ -1,28 +1,81 @@
+/* Estilo general */
 body {
+    background-color: #172231;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f3f3f3;
+}
+.main-box {
+    width: 450px;
+    text-align: center;
+    background-color: #1e2a3a;
 }
 
-.container {
-    width: 90%;
-    max-width: 500px;
-    margin: 2rem auto;
-    background: #fff;
-    padding: 1.5rem;
+/* Contenedor principal de formularios */
+.form-box {
+    width: 450px;
+    background-color: #253751;
+    color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 35px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
-input, button {
+/* Títulos */
+h1.title {
+    color: #ffffffd4;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+form input {
     width: 100%;
-    padding: 10px;
-    margin: 0.5rem 0;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: #1e2a3a;
+    color: white;
 }
 
+form input::placeholder {
+    color: #a9b7d0;
+}
+
+/* Botones */
 button {
-    background: #007bff;
-    color: #fff;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
     border: none;
+    color: #ffffff;
+    border-radius: 6px;
     cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0069d9;
+}
+
+/* Botón cancelar */
+.btn-cancelar {
+    background-color: #444;
+}
+
+.btn-cancelar:hover {
+    background-color: #333;
+}
+
+/* Links */
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #007bff;
 }

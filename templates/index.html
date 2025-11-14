@@ -3,18 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Aventón UPA - Flask</title>
+    <title>Aventón UPA - Inicio</title>
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+
+    <!-- Tu CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
-    <h1>Bienvenido a Aventón UPA</h1>
-    <h2>Elige si deseas registrarte como pasajero o conductor:</h2>
-    <a href="{{ url_for('registro_conductor') }}">
-        <button>Registrar Conductor</button>
-    </a>
-    <a href="{{ url_for('registro_pasajero') }}">
-        <button>Registrar Pasajero</button>
-    </a>
+
+    <div class="box main-box">
+        <h1 class="title is-2">Bienvenido a Aventón UPA</h1>
+        <p class="subtitle is-5">Selecciona el tipo de registro que deseas realizar:</p>
+
+        <div class="buttons is-centered mt-5">
+            <a href="{{ url_for('registro_conductor') }}" class="button is-primary is-medium">
+                Registrarse como Conductor
+            </a>
+
+            <a href="{{ url_for('registro_pasajero') }}" class="button is-primary is-medium">
+                Registrarse como Pasajero
+            </a>
+        </div>
+
+        <p class="has-text-grey mt-5">
+            <a href="{{ url_for('index') }}">Volver al inicio</a>
+        </p>
+    </div>
+
 </body>
 
 </html>
