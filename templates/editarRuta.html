@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Ruta</title>
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container mt-6">
+        <div class="box">
+
+            <h1 class="title is-3">Editar Ruta</h1>
+
+            <form action="{{ url_for('actualizarRuta', id=ruta[0]) }}" method="POST">
+
+                <div class="field">
+                    <label class="label">Calle</label>
+                    <div class="control">
+                        <input value="{{ ruta[1] }}" class="input" type="text" name="calle" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Punto de Referencia</label>
+                    <div class="control">
+                        <input value="{{ ruta[2] }}" class="input" type="text" name="punto_referencia" required>
+                    </div>
+                </div>
+
+                <button class="button is-primary mt-3">
+                    <i class="fa-solid fa-floppy-disk"></i>&nbsp; Guardar Cambios
+                </button>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

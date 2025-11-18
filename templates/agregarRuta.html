@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Ruta</title>
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+
+    <!-- Tu CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="form-box">
+        <h1 class="title is-3">Agregar Ruta</h1>
+        <form method="POST" action="{{ url_for('agregarRuta') }}">
+            <div class="field">
+                <label class="label">Calle Transitada</label>
+                <div class="control">
+                    <input class="input" type="text" name="calle" placeholder="Ingresa la calle transitada" required>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Punto de referencia</label>
+                <div class="control">
+                    <input class="input" type="text" name="punto_referencia"
+                        placeholder="Ingresa un punto de referencia" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <a href="{{ url_for('pageConductor') }}">
+                        <button class="button is-primary is-medium mt-5" type="submit">Agregar Ruta</button>
+                </div>
+            </div>
+    </div>
+</body>
+
+</html>

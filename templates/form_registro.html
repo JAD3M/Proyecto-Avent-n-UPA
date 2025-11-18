@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+    <div class="box main-box">
+        <h1 class="title is-3">Registro de {{ tipo|capitalize }}</h1>
+
+        <form method="POST" action="{{ url_for('guardar_usuario') }}">
+
+            <input type="hidden" name="tipo" value="{{ tipo }}">
+
+            <div class="field">
+                <label class="label">Nombre</label>
+                <input class="input" type="text" name="nombre" required>
+            </div>
+
+            <div class="field">
+                <label class="label">Apellido</label>
+                <input class="input" type="text" name="apellido" required>
+            </div>
+
+            <div class="field">
+                <label class="label">Correo Institucional</label>
+                <input class="input" type="email" name="correo" required>
+            </div>
+
+            <div class="field">
+                <label class="label">Contraseña</label>
+                <input class="input" type="password" name="contraseña" required>
+            </div>
+
+            <div class="field">
+                <label class="label">Matrícula</label>
+                <input class="input" type="text" name="matriculaEst" required>
+            </div>
+
+            <div class="field">
+                <label class="label">Número Telefónico</label>
+                <input class="input" type="text" name="numero_telefonico" required>
+            </div>
+
+            <div class="field" id="matriculaCocheField">
+                <label class="label">Matrícula de coche (solo conductores)</label>
+                <input class="input" type="text" name="matricula_coche">
+            </div>
+
+            <button class="button is-primary is-medium mt-4">Registrarse</button>
+        </form>
+    </div>
+</body>
+
+</html>

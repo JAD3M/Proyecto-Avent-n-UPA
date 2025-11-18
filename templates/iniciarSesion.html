@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aventón UPA - Inicio de Sesión</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="box main-box">
+        <h1 class="title is-2">Iniciar Sesión</h1>
+
+        <form method="POST" action="{{ url_for('iniciarSesion') }}">
+            <div class="field">
+                <label class="label">Correo Electrónico</label>
+                <div class="control">
+                    <input class="input" type="email" name="correo" placeholder="Ingresa tu correo electrónico" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Contraseña</label>
+                <div class="control">
+                    <input class="input" type="password" name="contraseña" placeholder="Ingresa tu contraseña" required>
+                </div>
+            </div>
+
+            <div class="field mt-4">
+                <div class="control">
+                    <button class="button is-primary is-medium" type="submit">
+                        Iniciar Sesión
+                    </button>
+
+                    <a href="{{ url_for('index') }}" class="button is-light is-medium">
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

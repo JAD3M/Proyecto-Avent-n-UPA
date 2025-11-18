@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aventón UPA - Registrarse</title>
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+
+    <!-- Tu CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="box main-box">
+        <h1 class="title is-3">Crear una Cuenta</h1>
+        <p class="subtitle is-6 has-text-grey">
+            Selecciona tu tipo de usuario para continuar
+        </p>
+
+        <div class="buttons is-centered mt-5">
+            <a href="{{ url_for('registrarse', tipo='conductor') }}" class="button is-primary is-medium">
+                Registrarse como Conductor
+            </a>
+
+            <a href="{{ url_for('registrarse', tipo='pasajero') }}" class="button is-primary is-medium">
+                Registrarse como Pasajero
+            </a>
+        </div>
+        <p class="has-text-grey mt-5">
+            <a href="{{ url_for('index') }}">Volver al inicio</a> <!-- Enlace a la página de la upa-->
+        </p>
+    </div>
+</body>
+
+</html>

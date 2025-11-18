@@ -15,12 +15,13 @@ body {
 
 /* Contenedor principal de formularios */
 .form-box {
-    width: 450px;
+    width: 700px;
+    margin: 40px auto;
+    padding: 30px;
     background-color: #253751;
     color: #ffffff;
     border-radius: 10px;
-    padding: 35px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     text-align: center;
 }
 
@@ -56,7 +57,14 @@ button {
     cursor: pointer;
     margin-top: 10px;
 }
-
+.button.is-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+.button.is-primary:hover {
+    background-color: #0069d9;
+}
 button:hover {
     background-color: #0069d9;
 }

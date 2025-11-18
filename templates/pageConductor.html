@@ -3,16 +3,69 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>pageConductor</title>
+    <title>Panel del Conductor</title>
+
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
 
-    <!-- Tu CSS -->
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
-    <div class= "form-box">
-        <h1 class = "title is-3">Bienvenido Conductor</h1>
+    <div class="form-box">
+
+        <h1 class="title is-3 has-text-white">Bienvenido, Conductor</h1>
+
+        <!-- botón agregar -->
+        <a href="{{ url_for('agregarRuta') }}" class="button is-success is-medium mt-4">
+            <span class="icon"><i class="fa-solid fa-plus"></i></span>
+            <span>Agregar Ruta</span>
+        </a>
+
+        <h2 class="title is-4 mt-5 has-text-white">Rutas registradas</h2>
+
+        <div class="table-container">
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Calle</th>
+                        <th>Punto de Referencia</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in rutas %}
+                    <tr>
+                        <td>{{ r[0] }}</td>
+                        <td>{{ r[1] }}</td>
+                        <td>{{ r[2] }}</td>
+                        <td>
+
+                            <!-- botón editar -->
+                            <a href="{{ url_for('editarRuta', id=r[0]) }}" class="button is-info is-small">
+                                <span class="icon">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </span>
+                            </a>
+
+                            <!-- botón eliminar -->
+                            <a href="{{ url_for('eliminarRuta', id=r[0]) }}" class="button is-danger is-small"
+                                onclick="return confirm('¿Seguro que quieres eliminar esta ruta?');">
+                                <span class="icon">
+                                    <i class="fa-solid fa-trash"></i>
+                                </span>
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
     </div>
 </body>
