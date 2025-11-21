@@ -7,13 +7,64 @@
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <!-- Tu CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
-    <div class= "form-box">
-        <h1 class = "title is-3">Bienvenido Pasajero</h1>
+    <!-- 🔹 Barra superior -->
+    <div class="navbar is-transparent is-spaced is-right" style="position: absolute; top: 10px; right: 20px;">
+        <div class="navbar-item">
+            <span class="icon">
+                <i class="fa-solid fa-user-circle fa-lg"></i>
+            </span>
+            <span class="ml-2 has-text-white">{{ session['nombre_usuario'] }}</span>
+        </div>
     </div>
+
+
+    <div class="form-box">
+        <h1 class="title is-3">Bienvenido Pasajero</h1>
+        <h2 class="subtitle is-5">Conductores disponibles:</h2>
+        <div class="table-container">
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Teléfono</th>
+                        <th>Matrícula del vehículo</th>
+                        <th>Calle</th>
+                        <th>Punto de Referencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for conductor in conductores %}
+                    <tr>
+                        <td>{{ conductor[0] }}</td>
+                        <td>{{ conductor[1] }}</td>
+                        <td>{{ conductor[2] }}</td>
+                        <td>{{ conductor[3] }}</td>
+                        <td>{{ conductor[4] }}</td>
+                        <td>{{ conductor[5] }}</td>
+                        <td>
+                        <!-- 🔸 Botón Reportar -->
+                            <a href="{{ url_for('reportarConductor', id=loop.index) }}" 
+                               class="button is-danger is-small">
+                                <span class="icon">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                </span>
+                                <span>Reportar</span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 </body>
 
 </html>

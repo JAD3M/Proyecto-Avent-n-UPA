@@ -82,19 +82,47 @@ def pageConductor():
         return redirect(url_for('iniciarSesion'))
 
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM ruta WHERE id_usuario = %s", (session['id_usuario'],))
+    cur.execute("""
+    SELECT id, calle, punto_referencia
+    FROM ruta
+    WHERE id_usuario = %s
+    """, (session['id_usuario'],))
     rutas = cur.fetchall()
+
+    # obtener nombre del usuario en sesión
+    cur.execute("SELECT nombre FROM usuarios WHERE id_usuario = %s", (session['id_usuario'],))
+    nombre = cur.fetchone()[0]
     cur.close()
 
-    return render_template('pageConductor.html', rutas=rutas)
-
+    return render_template('pageConductor.html', rutas=rutas, nombre=nombre)
 
 @app.route('/pagePasajero')
 def pagePasajero():
     if 'id_usuario' not in session:
         return redirect(url_for('iniciarSesion'))
 
-    return render_template('pagePasajero.html')
+    cur = mysql.connection.cursor()
+
+    # Obtenemos los conductores y sus rutas
+    cur.execute("""
+        SELECT u.nombre, u.apellido, u.numero_telefonico, u.matricula_coche, 
+               r.calle, r.punto_referencia
+        FROM usuarios u
+        JOIN ruta r ON u.id_usuario = r.id_usuario
+        WHERE u.tipo = 'conductor'
+    """)
+    conductores = cur.fetchall()
+
+    # Obtenemos el nombre del usuario actual (el pasajero)
+    cur.execute("SELECT nombre, apellido FROM usuarios WHERE id_usuario = %s", (session['id_usuario'],))
+    usuario = cur.fetchone()
+    session['nombre_usuario'] = f"{usuario[0]} {usuario[1]}" if usuario else ''
+
+    cur.close()
+
+    return render_template('pagePasajero.html', conductores=conductores)
+
+
 
 
 # ---------- AGREGAR RUTA SOLO DEL CONDUCTOR ----------
@@ -171,6 +199,30 @@ def actualizarRuta(id):
 
     return redirect(url_for('pageConductor'))
 
+@app.route('/reportarConductor/<int:id>', methods=['GET', 'POST'])
+def reportarConductor(id):
+    if 'id_usuario' not in session:
+        return redirect(url_for('iniciarSesion'))
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT nombre FROM usuarios WHERE id_usuario = %s", (id,))
+    nombre = cur.fetchone()
+    cur.close()
+
+    if request.method == 'POST':
+        motivo = request.form['motivo']
+
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO reportes (id_conductor, id_pasajero, motivo)
+            VALUES (%s, %s, %s)
+        """, (id, session['id_usuario'], motivo))
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect(url_for('pagePasajero'))
+
+    return render_template('reportarConductor.html', id=id, nombre=nombre[0] if nombre else '')
 
 # ---------- CERRAR SESIÓN ----------
 @app.route('/logout')

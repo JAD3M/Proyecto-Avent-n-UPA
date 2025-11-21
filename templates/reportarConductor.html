@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del Conductor</title>
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Tu CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- 🔹 Barra superior -->
+    <div class="navbar is-transparent is-spaced is-right" style="position: absolute; top: 10px; right: 20px;">
+        <div class="navbar-item">
+            <span class="icon">
+                <i class="fa-solid fa-user-circle fa-lg"></i>
+            </span>
+            <span class="ml-2 has-text-white">{{ session['nombre_usuario'] }}</span>
+        </div>
+    </div>
+    <div class="form-box">
+
+        <h1 class="title is-3 has-text-white">Reportar Conductor</h1>
+
+        <form method="POST" action="{{ url_for('reportarConductor', id=id) }}">
+
+            <div class="field">
+                <label class="label has-text-white">Motivo del Reporte</label>
+                <div class="control">
+                    <textarea class="textarea" name="motivo" placeholder="Describe el motivo de tu reporte..." required></textarea>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-danger">Enviar Reporte</button>
+                </div>
+                <div class="control">
+                    <a href="{{ url_for('pagePasajero') }}" class="button is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

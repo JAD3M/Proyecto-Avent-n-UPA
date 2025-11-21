@@ -7,14 +7,26 @@
 
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
-
+    
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <!-- Tu CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
+    <nav class="navbar is-dark">
+        <div class="navbar-end pr-5">
+            <div class="navbar-item">
+                <span class="icon has-text-white mr-2">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+                <span class="has-text-white">{{ nombre }}</span>
+            </div>
+        </div>
+    </nav>
+
     <div class="form-box">
 
         <h1 class="title is-3 has-text-white">Bienvenido, Conductor</h1>
